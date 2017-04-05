@@ -45,7 +45,7 @@
 		#style_demar {
 			position: absolute;
 			left: 77%;
-			top: 50%;
+			top: 45%;
 		}
 /*		#style_choix {
 			position: absolute;
@@ -61,17 +61,17 @@
 		#style_age {
 			position: absolute;
 			left: 77%;
-			top: 10%;
+			top: 20%;
 		}
 		#style_genre {
 			position: absolute;
 			left: 77%;
-			top: 15%;
+			top: 25%;
 		}
 		#style_experience {
 			position: absolute;
 			left: 77%;
-			top: 20%;
+			top: 30%;
 		}
 	</style>
 
@@ -85,9 +85,9 @@
 
 <button  onclick="ClicBouton();" style="position: absolute ; left: 80%; top: 60%; width:200px; height: 100px;  font:bold 40px Arial; background:#d34836; color:#fff;" >Frein</button>
 
-<input id="Age" type="text" name="age" value="" style="position: absolute; left: 81%; top: 10%;"></input>
+<input id="Age" type="text" name="age" value="" style="position: absolute; left: 81%; top: 20%;"></input>
 
-<input id="Exp" type="text" name="experience" value="" style="position: absolute; left: 77%; top: 27%;""></input>
+<input id="Exp" type="text" name="experience" value="" style="position: absolute; left: 77%; top: 37%;""></input>
 
 
 <script type="text/javascript"> 
@@ -159,25 +159,26 @@
 
  	console.log("ok");
 
- 	var width=600;
- 	var height=600;
+ 	var width=1000;
+ 	var height=1000;
 
  	createCanvas(width, height, 100, 0);
 	textAlign(CENTER);
+	textSize(18);
  	text("En appuyant sur Démarrer, vous commencez à conduire.",width/2,50);
 	text("Lorsque vous verrez apparaitre le signal :",width/2,100);
 	image(imgralentir,width/2-50,150, 100, 100);
  	text("cliquez sur le bouton Frein, votre temps de réaction vous sera donné.",width/2,300);
- 	text("Lorsque vous fermez la boite de dialogue qui vous donne votre temps de réaction,",width/2,320);
- 	text("la simulation redémarre automatiquement, vous devez être prêt à rappuyer sur Frein.",width/2,340);
- 	text("Vous ferez 6 simulations de jour et 6 de nuit.",width/2,370);
+ 	text("Lorsque vous fermez la boite de dialogue qui vous donne votre temps de réaction,",width/2,340);
+ 	text("la simulation redémarre automatiquement, vous devez être prêt à rappuyer sur Frein.",width/2,360);
+ 	text("Vous ferez 6 simulations de jour et 6 de nuit.",width/2,390);
  	//text("Dans chaque cas les 6 premieres seront réalisées en conditions normales,",width/2,370);
  	//text("pour les 6 autres vous entretiendrez une conversation en même temps.",width/2,390);
  	//text("(Appuyer sur Démarrer après chaque essai pour recommencer)",width/2, 410);
- 	text("Après 6 simulations, le mode nuit sera automatiquement sélectionné",width/2,390);
- 	text("Une fois les 12 simulations terminées,",width/2, 410);
- 	text("Enregistrez le fichier et envoyez-le moi s'il vous plait!",width/2, 430);
- 	text("C'est à vous!!!",width/2,470);
+ 	text("Après 6 simulations, le mode nuit sera automatiquement lancé",width/2,410);
+ 	text("Une fois les 12 simulations terminées,",width/2, 430);
+ 	text("Enregistrez le fichier et envoyez-le moi s'il vous plait!",width/2, 450);
+ 	text("C'est à vous!!!",width/2,490);
 
 
 
