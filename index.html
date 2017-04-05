@@ -209,6 +209,7 @@ function Element()
 	this.genre =0;
 	this.exp =0;
 	this.moment = [];
+	this.random =[];
 	this.times = [];
 }
 
@@ -302,6 +303,7 @@ function fin(){
 	resultats.genre = document.getElementById("genre").value;
 	resultats.exp = document.getElementById("Exp").value;
 	resultats.moment = liste_moment;
+	resultats.random = temps_random;
 	resultats.times=temps_reaction;
 	console.log(resultats);
 	saveJSON(resultats, 'resultats.json', true);
