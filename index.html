@@ -36,22 +36,22 @@
 			width: 100%;
 			float: left;
 		}
-		#param_usager {
+/*		#param_usager {
 			position: absolute;
 			left: 77%;
 			top: 35%;
-		}
+		}*/
 
 		#style_demar {
 			position: absolute;
 			left: 77%;
 			top: 50%;
 		}
-		#style_choix {
+/*		#style_choix {
 			position: absolute;
 			left: 77%;
 			top: 45%;
-		}
+		}*/
 
 		#style_fin {
 			position: absolute;
@@ -101,15 +101,15 @@
 
 	<div id="cadre">
 		<div id="style_fond"></div>
-		<div id="param_usager">
+<!-- 		<div id="param_usager">
 		<p>À quel moment souhaitez vous conduire?</p>
 		<select id="moment" style="width: 175px;">
 			<option value = "Jour/Nuit" selected>moment...:</option>
 			<option value = "Jour">Jour</option>
 			<option value = "Nuit">Nuit</option>
 			</select>
-		</div>
-		<div id="style_choix"></div>
+		</div> -->
+<!-- 		<div id="style_choix"></div> -->
 		<div id="style_demar"></div>
 		<div id="style_fin"></div>
 		<div id="style_genre">
@@ -148,10 +148,10 @@
  var dernière_simulation=false;
  
  function preload(){
- 	imgjour=loadImage("jour.jpg");
- 	imgnuit=loadImage("nuit.jpg");
- 	img60kmh=loadImage("60kmh.jpg");
- 	imgralentir=loadImage("ralentir.jpg");
+ 	imgjour=loadImage("Images/jour.jpg");
+ 	imgnuit=loadImage("Images/nuit.jpg");
+ 	img60kmh=loadImage("Images/60kmh.jpg");
+ 	imgralentir=loadImage("Images/ralentir.jpg");
  	console.log("ok");
  }
 
@@ -181,13 +181,13 @@
 
 
  
-buttChoix = createButton("Choisir");
-buttChoix.parent("style_choix");
-buttChoix.mousePressed(fond);
+// buttChoix = createButton("Choisir");
+// buttChoix.parent("style_choix");
+// buttChoix.mousePressed(fond);
 
 buttDemar = createButton("Demarrer");
 buttDemar.parent("style_demar");
-buttDemar.mousePressed(demarre);
+buttDemar.mousePressed(fond_jour);
 
 buttFin = createButton("Fin simulation");
 buttFin.parent("style_fin");
@@ -214,27 +214,41 @@ function Element()
 }
 
 
-function fond(){
-	var jour_nuit=document.getElementById("moment").value;
-	createCanvas(950, 600, 0, 0);
-	background(0);
-	if(jour_nuit=="Jour"){
-		image(imgjour, 0, 0, 950, 600);
+// function fond(){
+// 	var jour_nuit=document.getElementById("moment").value;
+// 	createCanvas(950, 600, 0, 0);
+// 	background(0);
+// 	if(jour_nuit=="Jour"){
+// 		image(imgjour, 0, 0, 950, 600);
 
-	}else{
-		image(imgnuit, 0, 0, 950, 600);
+// 	}else{
+// 		image(imgnuit, 0, 0, 950, 600);
 
-	}
-	image(img60kmh,400,450,200,150);
+// 	}
+// 	image(img60kmh,400,450,200,150);
 	
 	
-	console.log("image affichée");
+// 	console.log("image affichée");
+// }
+
+function fond_jour(){
+			createCanvas(950, 600, 0, 0);
+			background(0);
+			image(imgjour, 0, 0, 950, 600);
+			image(img60kmh,400,450,200,150);
+			demarre();
+}
+
+function fond_nuit(){
+			createCanvas(950, 600, 0, 0);
+			background(0);
+			image(imgnuit, 0, 0, 950, 600);
+			image(img60kmh,400,450,200,150);
+			demarre();
 }
 
 function demarre (){
-	//for (var i=0; i<6;){
-		//if(action_frein!="false"){
-			//var n=num_simulation;
+			
 			temps=random(2000,8000);
 			setTimeout(ralentir, temps);
 			var millisecond=millis();
@@ -242,9 +256,6 @@ function demarre (){
 			console.log(millisecond);
 			console.log(temps);
 			console.log(temps_apparition);
-		//}
-		//i++;
-	//}
 }
 
 function ralentir(){
@@ -258,11 +269,16 @@ function frein(){
 	//action_frein="true";
 		var temps_frein=millis();
 		temps_ecoule=temps_frein-temps_apparition;
+		if(n<7){
+			moment="jour";
+		}else{
+			moment="nuit";
+		}
 		console.log(temps_ecoule);
 		if(temps_ecoule>0){
-			temps_reaction.push(round(temps_ecoule));
+			temps_reaction.push(round(temps));
 			temps_random.push(round(temps_frein));
-			liste_moment.push(document.getElementById("moment").value);
+			liste_moment.push(moment);
 		console.log(temps_reaction);
 			if(n!=6 && n!=12){
 				alert("simumation n° : "+n+", votre temps de réaction est de : "+ round(temps_ecoule)+ " millisecondes");
@@ -278,13 +294,17 @@ function frein(){
 
 		n=n+1;
 		console.log(n);	
-		fond();
+		// fond();
 
 
-		if (n!=7){
-			if(n!=13){
-				demarre();
-			}
+		if (n<7){
+				fond_jour();
+			}else{
+				if(n!=13){
+					fond_nuit();
+				}else{
+					fin();
+				}
 		}
 		
 
