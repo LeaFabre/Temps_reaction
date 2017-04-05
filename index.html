@@ -8,6 +8,9 @@
 	<!--<script language="javascript" src="libraries/p5.sound.js"></script>-->
 
 	<script src="libraries/p5.sound.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 	
 	<style> 
 		body {
@@ -139,15 +142,16 @@
 
  var liste_moment=[];
  var resultats = [];
+ var temps_random =[];
 
  var n=1;
  var dernière_simulation=false;
  
  function preload(){
- 	imgjour=loadImage("Images/jour.jpg");
- 	imgnuit=loadImage("Images/nuit.jpg");
- 	img60kmh=loadImage("Images/60kmh.jpg");
- 	imgralentir=loadImage("Images/ralentir.jpg");
+ 	imgjour=loadImage("jour.jpg");
+ 	imgnuit=loadImage("nuit.jpg");
+ 	img60kmh=loadImage("60kmh.jpg");
+ 	imgralentir=loadImage("ralentir.jpg");
  	console.log("ok");
  }
 
@@ -256,6 +260,7 @@ function frein(){
 		console.log(temps_ecoule);
 		if(temps_ecoule>0){
 			temps_reaction.push(round(temps_ecoule));
+			temps_random.push(round(temps_frein));
 			liste_moment.push(document.getElementById("moment").value);
 		console.log(temps_reaction);
 			if(n!=6 && n!=12){
