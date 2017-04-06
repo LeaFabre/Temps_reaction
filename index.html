@@ -142,17 +142,23 @@
  	createCanvas(width, height, 100, 0);
 	textAlign(CENTER);
 	textSize(18);
- 	text("En appuyant sur Démarrer, vous commencez à conduire.",width/2,50);
-	text("Lorsque vous verrez apparaitre le signal :",width/2,100);
+ 	text("Ceci est un évaluateur du temps de réaction au volant.",width/2,50);
+
+	text("Vous allez être au volant d'une voiture, à 60km/h.",width/2,100)
+	text(" Lorsque vous verrez apparaitre le signal :",width/2,120);
 	image(imgralentir,width/2-50,150, 100, 100);
- 	text("cliquez sur le bouton Frein, votre temps de réaction vous sera donné.",width/2,300);
+ 	text("cliquez sur le bouton 'Frein', votre temps de réaction vous sera donné.",width/2,290);
+
  	text("Lorsque vous fermez la boite de dialogue qui vous donne votre temps de réaction,",width/2,340);
- 	text("la simulation redémarre automatiquement, vous devez être prêt à rappuyer sur Frein.",width/2,360);
- 	text("Vous ferez 6 simulations de jour et 6 de nuit.",width/2,390);
- 	text("Après 6 simulations, le mode nuit sera automatiquement lancé",width/2,410);
- 	text("Une fois les 12 simulations terminées,",width/2, 430);
- 	text("Enregistrez le fichier et envoyez-le moi s'il vous plait!",width/2, 450);
- 	text("C'est à vous!!!",width/2,490);
+ 	text("la simulation redémarre automatiquement, vous devez être prêt à rappuyer sur 'Frein'.",width/2,360);
+
+ 	text("Vous commencerez par 4 simulations essais, 2 de jour, 2 de nuit.",width/2,400);
+ 	text("Vous ferez ensuite 10 simulations de jour et 10 de nuit.",width/2,420);
+ 	text("Après les 10 simulations de jour, le mode nuit sera automatiquement lancé",width/2,440);
+ 	text("Une fois les 20 simulations terminées,",width/2, 460);
+ 	text("Enregistrez le fichier et envoyez-le moi s'il vous plait!",width/2, 480);
+ 	
+ 	text("Appuyez sur 'Démarrer', c'est à vous!!!",width/2,520);
 
 
 buttDemar = createButton("Demarrer");
@@ -220,7 +226,7 @@ function frein(){
 		//console.log("frein enclenché");
 		var temps_frein=millis();
 		temps_ecoule=temps_frein-temps_apparition;
-		if(n<7){
+		if(n<14){
 			moment="jour";
 		}else{
 			moment="nuit";
@@ -231,31 +237,46 @@ function frein(){
 			temps_random.push(round(temps));
 			liste_moment.push(moment);
 		//console.log(temps_reaction);
-			if(n!=6 && n!=12){
+
+			if(n!=4 && n!=14 && n!=24){
 				alert("simumation n° : "+n+", votre temps de réaction est de : "+ round(temps_ecoule)+ " millisecondes");
 			}else{
-				if(n==6){
+				if(n==4){
+					alert("simumation n° : "+n+", votre temps de réaction est de : "+ round(temps_ecoule)+ " millisecondes. Les tests essais sont terminés, vous passez maintenant à la vraie simulation, êtes-vous prêts?");
+				}else{
+					if(n==14){
 				alert("simumation n° : "+n+", votre temps de réaction est de : "+ round(temps_ecoule)+ " millisecondes. Vous pouvez passer à la smulation de nuit.");
 				}else{
 					alert("simumation n° : "+n+", votre temps de réaction est de : "+ round(temps_ecoule)+ " millisecondes. Vous avez terminé, vous pouvez enregistrer les résultats. Merci!");
 				}
+				}
 			}
 		}else{
 			alert("Le signal de frein n'est pas encore apparu");
+			demarre();
 		}
 
 		n=n+1;
 		console.log(n);	
 
-		if (n<7){
+	if(n<25){
+		if(n<5){
+			if (n<3){
 				fond_jour();
-		}else{
-			if(n!=13){
-				fond_nuit();
 			}else{
-				fin();
+				fond_nuit();
+			}
+		}else{
+			if (n<15){
+				fond_jour();
+			}else{
+				fond_nuit();
 			}
 		}
+	}else{
+		fin();
+	}
+
 }
 
 function fin(){
